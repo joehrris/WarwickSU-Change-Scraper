@@ -25,7 +25,7 @@ def get_formatted_html(session, url):
             '__VIEWSTATEGENERATOR', 
             '__EVENTVALIDATION', 
             '__RequestVerificationToken',
-            '_Nonce'
+            '__Nonce'
         ]
         for hidden_input in soup.find_all('input', type='hidden'):
             if hidden_input.get('name') in noisy_tags or hidden_input.get('id') in noisy_tags:
