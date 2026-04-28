@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head>
+  <!-- Powered by www.ukmsl.com - v8.84.2604.2301 -->
+  <title>
+   Login
+  </title>
+  <meta charset="utf-8"/>
+  <link href="//static-uk.ukmsl.net/8.84/skins/print.css" media="print" rel="stylesheet" type="text/css"/>
+  <link href="//static-uk.ukmsl.net/8.84/skins/system.css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="//static-uk.ukmsl.net/8.84/skins/icons.css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="//static-uk.ukmsl.net/8.84/skins/Froala.css" media="all" rel="stylesheet" type="text/css"/>
+  <!-- start of core2019-js snippet -->
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <!--<meta property="og:image" content="https://www.warwicksu.com/stylesheet/WarwickSU2019/favicon-200x200.png"/>-->
+  <meta content="" property="og:image"/>
+  <meta content="Warwick Students' Union - creating a better experience for students at Warwick." property="og:description">
+   <meta content="1wrhd47nxlg7dttjd7bjhtpiaaguai" name="facebook-domain-verification">
+    <meta content="98BFDADEE5588927F31893DD1D8036BF" name="msvalidate.01"/>
+    <!--FAV ICON-->
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-60x60.png" rel="apple-touch-icon-precomposed" sizes="60x60"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-120x120.png" rel="apple-touch-icon-precomposed" sizes="120x120"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-76x76.png" rel="apple-touch-icon-precomposed" sizes="76x76"/>
+    <link href="/stylesheet/WarwickSU2019/apple-touch-icon-152x152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+    <link href="/stylesheet/WarwickSU2019/favicon-196x196.png" rel="icon" sizes="196x196" type="image/png"/>
+    <link href="/stylesheet/WarwickSU2019/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/>
+    <link href="/stylesheet/WarwickSU2019/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+    <link href="/stylesheet/WarwickSU2019/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+    <link href="/stylesheet/WarwickSU2019/favicon-128.png" rel="icon" sizes="128x128" type="image/png"/>
+    <meta content=" " name="application-name"/>
+    <meta content="#FFFFFF" name="msapplication-TileColor"/>
+    <meta content="/stylesheet/WarwickSU2019/mstile-144x144.png" name="msapplication-TileImage"/>
+    <meta content="/stylesheet/WarwickSU2019/mstile-70x70.png" name="msapplication-square70x70logo"/>
+    <meta content="/stylesheet/WarwickSU2019/mstile-150x150.png" name="msapplication-square150x150logo"/>
+    <meta content="/stylesheet/WarwickSU2019/mstile-310x150.png" name="msapplication-wide310x150logo"/>
+    <meta content="/stylesheet/WarwickSU2019/mstile-310x310.png" name="msapplication-square310x310logo"/>
+    <!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+    </script>
+    <script src="/assets/site_resources/core-main.js">
+    </script>
+    <!--<script src="/assets/site_resources/bootstrap.min.js"></script>-->
+    <script async="async" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dee6247bdd1b000129b58b2&amp;product=inline-share-buttons" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+     $(function(){
+		$('#search .textbox').attr('placeholder','Search WarwickSU.com');
+	});
+    </script>
+    <script defer="" src="https://cdn.websitepolicies.io/lib/cookieconsent/cookieconsent.min.js">
+    </script>
+    <script>
+     window.addEventListener("load", function () {
+    window.wpcc.init(
+      {
+        "border": "thin",
+        "corners": "small",
+        "colors":
+        {
+          "popup":
+          {
+            "background": "#f6f6f6",
+            "text": "#000000",
+            "border": "#555555"
+          },
+          "button":
+          {
+            "background": "#555555",
+            "text": "#ffffff"
+          }
+        },
+        "position": "bottom",
+        "content": { "href": "https://www.warwicksu.com/your-union/privacy/cookies/" }
+      });
+  });
+ 
+$(document).ready(function () {
+   // 1. Find all <a> links containing 'ents' in their href
+  $("a[href*='/ents/event/']").each(function() {
+    var $this = $(this);
+    var originalHref = $this.attr('href');
+
+    // 2. Check if the user is logged in through SSO
+    if (mslUserInfo.userinfo.AuthenticationType === "Sso" && mslUserInfo.userinfo.IdCardNumber) {
+      // 3. Build the SSO login link
+      var domainName = "tickets.warwicksu.com";  // Replace with your actual domain
+      var ssoLoginUrl = "https://" + domainName + "/sso/login.ashx?ReturnUrl=";
+      var encodedOriginalUrl = encodeURIComponent(originalHref);
+      var newHref = ssoLoginUrl + encodedOriginalUrl;
+
+      // 4. Replace the link
+      $this.attr('href', newHref); 
+    }
+    });
+     // 1. Find all <a> links containing 'ents' in their href
+    $("a[href*='https://tickets.warwicksu.com/']").each(function() {
+        var $this = $(this);
+        var originalHref = $this.attr('href');
+        
+        // 2. Check if the user is logged in through SSO
+        if (mslUserInfo.userinfo.AuthenticationType === "Sso" && mslUserInfo.userinfo.IdCardNumber) {
+          // 3. Build the SSO login link
+          var newHref = "https://tickets.warwicksu.com/sso/login.ashx?ReturnUrl=/";
+          // 4. Replace the link
+          $this.attr('href', newHref); 
+        } 
+        // else - If the user is not logged in via SSO, no changes are made
+    }); 
+    
+    const profileRegex = /\/profile\/\d+\//;
+
+    $('a').filter(function() {
+        return profileRegex.test($(this).attr('href'));
+    }).each(function() {
+        $(this).removeAttr('href'); // Remove the href attribute
+        $(this).click(function(event) {
+            event.preventDefault(); // Prevent link from being followed
+        });
+    });
+});
+    </script>
+    <style>
+     .wpcc-btn { font-family: "Poppins", sans-serif; }
+    </style>
+    <!-- end of core2019-js snippet -->
+    <link href="//static-uk.ukmsl.net/8.84/skins/Controls/Breadcrumb.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="//static-uk.ukmsl.net/8.84/skins/Controls/Basket.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/core.css?v=117" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/core2022.css?v=51" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/headerfooter.css?v=114" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/algolia-search.css?v=9" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/generic.css?v=9" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/login.css?v=41" rel="stylesheet" type="text/css"/>
+    <link href="/pagestylesheet/login/styles.css?v=37" media="all" rel="stylesheet" type="text/css"/>
+    <!-- start of core2019-analytics snippet -->
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J3JHHQL3ZG">
+    </script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J3JHHQL3ZG');
+    </script>
+    <!-- end of core2019-analytics snippet -->
+    <script type="text/javascript">
+     $(document).ready(function() {
+
+
+    // add email address alias
+    const elm = document.querySelector("#ctl00_Main_emailAddress_lblTitle");
+    
+    console.log("email elm:", elm)
+
+    if (elm) {
+      elm.innerHTML = elm.innerHTML.replace('Email address', 'Email address (username)');
+    }
+
+
+    $('.mslwidget.col-submenu a').each(function() {
+      if ($(this).attr('href') === window.location.href.replace('https://www.warwicksu.com', '')) {
+        $(this).addClass('current');
+      }
+    });
+
+    //Accordion
+    $(".box").click(function() {
+      $('.tab-content').removeClass('current');
+      $('.tab-content .draw').removeClass('open').hide();
+      //    $(this).toggleClass("blue");
+      $(this).next().slideToggle("fast");
+    });
+
+  });
+    </script>
+    <link href="https://ajax.aspnetcdn.com/ajax/act/16_1_1/Content/AjaxControlToolkit/Styles/Backgrounds.min.css" rel="stylesheet" type="text/css"/>
+   </meta>
+  </meta>
+ </head>
+ <body id="msl">
+  <form action="./?redirect=%2fadmin%2fdirectory%2f" id="aspnetForm" method="post">
+   <div class="aspNetHidden">
+    <input id="__EVENTTARGET" name="__EVENTTARGET" type="hidden" value=""/>
+    <input id="__EVENTARGUMENT" name="__EVENTARGUMENT" type="hidden" value=""/>
+    <input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden" value="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"/>
+   </div>
+   <script type="text/javascript">
+    //<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+   </script>
+   <script src="https://ajax.aspnetcdn.com/ajax/4.6/1/WebForms.js" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    //<![CDATA[
+window.WebForm_PostBackOptions||document.write('<script type="text/javascript" src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZOxKJ0DbjbxQpBkSGBp-JvPOVnyW_jcS-Q_KXP5iNq-ZNUxKtQ2&amp;t=638901572248157332"><\/script>');//]]>
+   </script>
+   <script type="text/javascript">
+    //<![CDATA[
+var __cultureInfo = {"name":"en-GB","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"£","NaNSymbol":"NaN","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402300799999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2049,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":1,"CalendarWeekRule":2,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"eras":[1,"A.D.",null,0]};//]]>
+   </script>
+   <script src="https://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    //<![CDATA[
+(window.Sys && Sys._Application && Sys.Observer)||document.write('<script type="text/javascript" src="/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvn00pNXPJs8jWEdxPP_6Xt-hFWo4CcncM5c_w3PRzPIqXoCTeNlQpHAoGQPRp8ffjOQbAFUxVqD5s6xMS6qbswiCGdz-4sOYNYd0U5TZNnuWzxqssYIsvWHRBOGJm8qZMXDlNMM1&t=5c0e0825"><\/script>');//]]>
+   </script>
+   <script src="https://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.js" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    //<![CDATA[
+(window.Sys && Sys.WebForms)||document.write('<script type="text/javascript" src="/ScriptResource.axd?d=dwY9oWetJoJoVpgL6Zq8OF8zakXqYa6kwdNRxQWH_1WH2tx4R1Q90Qe87sHTUvvyKY9-vY6xjxWORetfYIKqyPd2EWgBlR2fjiPiLdeXN3QRZIaluMtISfCoqUuswkrXvrLkqYXUMcubbS1TL2jkfEkFDU01&t=5c0e0825"><\/script>');//]]>
+   </script>
+   <div class="aspNetHidden">
+    <input id="__VIEWSTATEGENERATOR" name="__VIEWSTATEGENERATOR" type="hidden" value="7CD7556D"/>
+    <input id="__EVENTVALIDATION" name="__EVENTVALIDATION" type="hidden" value="trKEhbXUaftCAga3prj6yKpAXgIKO/bT8xrPQ15yCdbo2i970sTCqSYo4WaxvZuBVj7KMkUH9R370E/7NN6sXfqf73Ylvd8j8PqOzKIztM0DkyGf4ZAHGIAXVPVqU9Pkxp9c9/vCAJZWg4He5/nPpVVevMZA/aJC3sF8ZPdVRYYIpPCI3fEEeLn6Ix1sUuEsERtVoQ8PapsuwRCkgI12wCasHjljQQkd5s5TsTbeLpQTZqaVunzDF5cNHqUL7qsdpZNrcASx9PW7wDzMr8oNfQ+ExK4="/>
+   </div>
+   <script id="ctl00_commonjs" src="//static-uk.ukmsl.net/8.84/scripts/common.js" type="text/javascript">
+   </script>
+   <div class="CatchEnter" id="ctl00_pnlCatchEnter" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_btnCatchEnter')">
+    <input id="ctl00_btnCatchEnter" name="ctl00$btnCatchEnter" onclick="javascript:return false;" style="display:none;" type="submit" value=""/>
+   </div>
+   <script type="text/javascript">
+    //<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl04', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+   </script>
+   <div class="page_login" id="skin_WarwickSU2019">
+    <!-- start of core2019-header snippet -->
+    <script type="text/javascript">
+     $(function() {
+    if ($('.msl-loginbutton.msl-loggedout').length > 0) {
+      $('body, #user-tools').addClass('loggedout');
+    } else {
+      $('#login-button').remove();
+      $('body, #user-tools').addClass('loggedin');
+      $('<a href="/profile/"></a>').prependTo('menu .logged-in');
+      if ($('#ulAdmin li').length < 2) {
+        $('#msl_admin h3, #ulAdmin').remove();
+      }
+      if ($('#ulOrgs').length != 1) {
+        $('#ctl00_AdminPanel_pnlOrganisations').remove();
+      }
+    }
+
+    $('.loggedin #user-tools-button').on('click', function(e) {
+      e.stopPropagation();
+      $('#user-tools-dropdown').slideToggle(200);
+      $('body').toggleClass('user-menu-open');
+      $('body.user-menu-open').on('click', function() {
+        $('#user-tools-dropdown').slideUp(200);
+        $('body').toggleClass('user-menu-open');
+      });
+    });
+
+    if ($('.col-submenu, .col-submenu-blogs').length > 0) {
+      $('<div class="col-submenu-mobile-toggle"><img alt="Menu" src="/stylesheet/WarwickSU2019/hamburger-menu-white.png"></div>').prependTo('#section-heading h1').on('click', function() {
+        $('.col-submenu, .col-submenu-blogs').slideToggle();
+      });
+    }
+
+
+    if ($('#profile_notify a').hasClass('no') && ($('body.loggedin').length == 1)) {
+      $('#profile_notify').insertBefore('#skin_WarwickSU2019').show();
+    }
+
+
+  });
+
+  $(document).ready(function() {
+
+    $('#submit').on("click", function() {
+      let valid = true;
+      var botCheck = document.getElementById("aspnetForm").elements["hidden"];
+      const submitButton = document.getElementById("submit");
+
+      $('[required]').each(function() {
+        if ($(this).is(':invalid') || !$(this).val()) valid = false;
+      })
+      if (!valid) alert("Error: Please fill all required fields!");
+      if (botCheck.value !== "") {
+        submitButton.disabled = true;
+        alert("Submission Denied");
+      }
+    });
+
+    $('#search > div > button > div.aa-DetachedSearchButtonIcon').html('<img height="35px" style = "margin-top:34px;" src="/stylesheet/WarwickSU2019/magnifying-glass-2023.png">');
+
+    //Change message from 'good morning name to hi name'
+    var message = $('.sidepanel.controlpanel p').text();
+    var short = message.substr(message.indexOf(" ") + 1);
+    var name = short.substr(short.indexOf(" ") + 1);
+    var new_message = "Hi " + name;
+    console.log(new_message);
+    
+    if (document.body.classList.contains('loggedin')) {
+        var firstName = mslUserInfo.userinfo.FirstName;
+        var lastName = mslUserInfo.userinfo.LastName;
+        var firstIndex = firstName.charAt(0).toUpperCase();
+        var lastIndex = lastName.charAt(0).toUpperCase();
+        var initials = firstIndex + lastIndex;
+    
+        var target = document.querySelector('.sidepanel.controlpanel');
+	    var container = document.createElement('div');
+	    container.classList.add('container');
+	    $('.sidepanel.controlpanel p').text(initials);
+        
+    }
+    
+        
+
+    if ($('#admin_page_content').length) {
+      $("#section-heading").css("height", "auto");
+    }
+
+    $("#main-menu .level_1").wrap("<div class='secl'></div>");
+
+
+    $('#searchIcon').click(function() {
+      $("#search").toggleClass("open");
+      $('#search').slideToggle(500);
+    });
+  
+
+    $('label[for="nav-open"]').click(function() {
+      $("body").addClass("menuOpen");
+      $("#main-menu").addClass("menuOpened");
+      $("#menu-content .maxWidth").css("height", "auto");
+    });
+    $('label[for="nav-close"]').click(function() {
+      $("body").removeClass("menuOpen");
+      $("#main-menu").removeClass("menuOpened");
+      //setTimeout(function(){ $("#menu-content .maxWidth").css( "height", "44px" ); }, 1000);
+    });
+
+
+    $("#main-menu li").each(function() {
+      if ($(this).find('ul').length) {
+        $(this).addClass("hasChild");
+      }
+    });
+
+
+    $("#main-menu .level_1 li.hasChild").click(function(e) {
+      if (!$(this).hasClass('active')) {
+        $("#main-menu .level_1 li").find('ul').slideUp();
+        $("#main-menu .level_1 li").removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+        $(this).find('ul:first').slideToggle();
+      } else {
+        return true;
+      }
+
+    });
+
+
+    $('#topBannerG img').prop('alt', $(document).attr('title'));
+
+    if ($('.mslwidget.col-submenu').children().length < 1) {
+      $('.mslwidget.col-submenu').parent().hide();
+    }
+
+    //Advice Enquiry Form link position
+    $('<li><a href="/help-support/contact/" class="nav_help-support_contact_">Advice Service Enquiry Form</a></li>').prependTo('.subnav_nav_help-support_');
+
+  });
+
+
+  $(window).on("load resize", function(e) {
+
+    if ($(window).width() < 801) {
+      $("#main-menu .msl_navbar li.hasChild").click(function(e) {
+        if (!$(this).hasClass('active')) {
+          $("#main-menu .msl_navbar li").find('ul').slideUp();
+          $("#main-menu .msl_navbar li").removeClass('active');
+          $(this).addClass('active');
+          e.preventDefault();
+          $(this).find('ul:first').slideToggle();
+        } else {
+          return true;
+        }
+      });
+
+    //   $(".sidepanel.controlpanel p").each(function() {
+    //     var x = $(this).text();
+    //     x = x.replace('Good afternoon', '');
+    //     $(this).text(x);
+    //   });
+
+    //   $(".sidepanel.controlpanel p").each(function() {
+    //     var xx = $(this).text();
+    //     xx = xx.replace('Good morning', '');
+    //     $(this).text(xx);
+    //   });
+
+    } else {
+      return true;
+    }
+  });
+    </script>
+    <!--<link rel="stylesheet" type="text/css" href="/assets/site_resources/bootstrapmin.css">-->
+    <!-- User Profile Notify -->
+    <div id="profile_notify" style="display:none;">
+     <div id="ctl00_ctl08_pnlToggle">
+      <span id="msl-togglelabel">
+       Current selection:
+      </span>
+      <a class="no" href="javascript:__doPostBack('ctl00$ctl08$btnPrefToggle','')" id="ctl00_ctl08_btnPrefToggle" title="Switch to ok">
+       no
+      </a>
+     </div>
+     <div id="profile_notify_wrap">
+      <img alt="Alert" src="/pageassets/404/alert-white.png" style="height: 25px;margin-top: 5px;margin-left: 5px;"/>
+      <h2>
+       Complete your profile
+      </h2>
+      <p>
+       Thanks for logging in to WarwickSU.com. Please take a few moments to complete your profile.
+      </p>
+      <ul>
+       <li class="profile_hide">
+        <a href="/student-voice/elections/profile/">
+         Update Your Profile
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <header>
+     <script>
+      headerh = $("header").height();
+navh = $("header .logo-admin").height();
+hdr = headerh;
+var prev = 0;
+var $window = $(window);
+window.onscroll = function () {
+  var scrollLimit = 150;
+  if (window.scrollY >= scrollLimit && $(window).width() >= 500) {
+    $("body").addClass("nav-scrolled");
+  } else {
+    $("body").removeClass("nav-scrolled");
+  }
+};
+
+var serviceUrl = "//api.reciteme.com/asset/js?key=";
+var serviceKey = "3466901164bf4f54afab945598ebbb2f8286ecc5";
+var options = {
+  Tracker: {
+    Ga: {
+      enabled: true,
+    },
+  },
+}; // Options can be added as needed
+var autoLoad = false;
+var enableFragment = "#reciteEnable";
+var loaded = [],
+  frag = !1;
+window.location.hash === enableFragment && (frag = !0);
+
+function loadScript(c, b) {
+  var a = document.createElement("script");
+  a.type = "text/javascript";
+  a.readyState
+    ? (a.onreadystatechange = function () {
+        if ("loaded" == a.readyState || "complete" == a.readyState)
+          (a.onreadystatechange = null), void 0 != b && b();
+      })
+    : void 0 != b &&
+      (a.onload = function () {
+        b();
+      });
+  a.src = c;
+  document.getElementsByTagName("head")[0].appendChild(a);
+}
+
+function _rc(c) {
+  c += "=";
+  for (var b = document.cookie.split(";"), a = 0; a < b.length; a++) {
+    for (var d = b[a]; " " == d.charAt(0); ) d = d.substring(1, d.length);
+    if (0 == d.indexOf(c)) return d.substring(c.length, d.length);
+  }
+  return null;
+}
+
+function loadService(c) {
+  for (var b = serviceUrl + serviceKey, a = 0; a < loaded.length; a++) if (loaded[a] == b) return;
+  loaded.push(b);
+  loadScript(serviceUrl + serviceKey, function () {
+    "function" === typeof _reciteLoaded && _reciteLoaded();
+    "function" == typeof c && c();
+    Recite.load(options);
+    Recite.Event.subscribe("Recite:load", function () {
+      Recite.enable();
+    });
+  });
+}
+"true" == _rc("Recite.Persist") && loadService();
+if ((autoLoad && "false" != _rc("Recite.Persist")) || frag)
+  document.addEventListener
+    ? document.addEventListener("DOMContentLoaded", function (c) {
+        loadService();
+      })
+    : loadService();
+
+function _reciteLoaded() {
+  Recite.Event.subscribe("Controls:loaded", function () {
+    document
+      .querySelector("#recite-player-autoplay-toggle")
+      .addEventListener("click", function (e) {
+        localStorage.setItem("isAutoplayOn", Recite.Preferences.get("player.autoplay"));
+      });
+  });
+  var isAutoplayOn = localStorage.getItem("isAutoplayOn");
+  if (isAutoplayOn != "true") {
+    Recite.Event.subscribe("Preferences:load", function () {
+      Recite.Preferences.set("player.autoplay", false);
+    });
+
+    Recite.Event.subscribe("Preferences:reset", function () {
+      Recite.Preferences.set("player.autoplay", false);
+    });
+  }
+}
+     </script>
+     <div class="maxWidth" id="header-content">
+      <div id="header-content-right">
+       <div id="header-column">
+        <div class="header-row">
+         <!--<div id="recite-me">-->
+         <!--  <a href="#" alt="Launch Recite Me assistive technology" id="enableRecite">Accessibility tools</a>-->
+         <!--</div>-->
+         <div id="user-tools">
+          <div id="user-tools-button">
+           <!--<a id="ctl00_ctl12_lnkLogin" class="msl-loginbutton msl-loggedout " href="/login/">Log in</a>
+-->
+           <a href="/login/" id="login-button">
+            <img alt="Login/Register Icon" id="login-icon" src="/stylesheet/WarwickSU2019/profile-icon.png"/>
+           </a>
+          </div>
+          <div id="user-tools-dropdown" style="display:none;">
+           <ul id="user-tools-links">
+            <li>
+             <a href="/profile/">
+              Your Profile
+             </a>
+            </li>
+            <li>
+             <a href="/shop/ReviewBasket/">
+              Shopping Basket
+             </a>
+            </li>
+            <li class="second-level">
+             <a class="second-level" href="/shop/purchasehistory/">
+              Purchase History
+             </a>
+            </li>
+            <li>
+             <a class="msl-loginbutton msl-loggedout" href="/login/" id="ctl00_ctl15_lnkLogin">
+              Log in
+             </a>
+            </li>
+           </ul>
+          </div>
+         </div>
+         <div id="search">
+         </div>
+         <label for="#ctl00_search_txtSearchStr" style="display: none">
+          Search
+         </label>
+         <!--
+<div id="search">
+    <div role="search" class="mslwidget">
+	<div id="ctl00_search_pnlSearch" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_search_btnSubmit&#39;)">
+	
+		<label for="ctl00_search_txtSearchStr" id="ctl00_search_lblSearch" class="msl-visually-hidden">Search</label>
+	    <input name="ctl00$search$txtSearchStr" type="text" id="ctl00_search_txtSearchStr" class="textbox" />
+	    
+	    <input type="submit" name="ctl00$search$btnSubmit" value="Search" id="ctl00_search_btnSubmit" class="button" />
+	
+</div>
+	</div>
+</div>
+-->
+         <div class="mslwidget">
+          <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js">
+          </script>
+          <script type=" module">
+           import algoliasearch from 'https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.esm.browser.js';
+          </script>
+          <style>
+           .aa-Panel {
+    display: none;
+  }
+          </style>
+          <script src=" https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js">
+          </script>
+          <script>
+           // mutation observer when the input gets shown
+  
+    var body = document.body;
+
+    function toggleResultsCount() {
+        var input = document.getElementById('autocomplete-0-input');
+        var resultsCount = document.querySelector('.results-count');
+        if (input && resultsCount) {
+            resultsCount.style.display = input.value.trim() === '' ? 'none' : 'block';
+        }
+    }
+
+    // Function to setup event listeners on input when it appears
+    function setupInput() {
+        var input = document.getElementById('autocomplete-0-input');
+        if (input) {
+            input.addEventListener('input', toggleResultsCount);
+            toggleResultsCount(); // Call to set initial visibility state
+        }
+    }
+
+    if (body) {
+        // Observer to monitor DOM changes and attribute changes on the body
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    var hasDetached = body.classList.contains('aa-Detached');
+                    if (hasDetached) {
+                        // Wait a bit for the input to be added
+                        setTimeout(setupInput, 50); // Adjust timing as necessary based on actual behavior
+                    }
+                }
+                if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach(function(node) {
+                        // Ensure node is an element before trying to use querySelector
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.id === 'autocomplete-0-input' || node.querySelector('#autocomplete-0-input')) {
+                                setupInput();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        // Start observing the body for attributes changes and the addition of new elements
+        observer.observe(body, { attributes: true, childList: true, subtree: true, attributeFilter: ['class'] });
+    }
+
+  
+  //
+  //
+
+
+  function urlToBreadcrumbs(url) {
+    const parts = url.split('/').filter(part => part && !part.includes('www.') && !part.includes('http:') && !part.includes('https:'));
+
+    const breadcrumbs = parts.join(' > '); // Skipping the first element because it's usually empty after 'https:'
+
+    return breadcrumbs;
+  }
+
+  const {
+    autocomplete: autocompleteSearch,
+    getAlgoliaResults
+  } = window['@algolia/autocomplete-js'];
+  const searchClient = algoliasearch(
+    'XUBH0D7GV6',
+    '8fa0759477166613078fae077d6806ed'
+  );
+
+  const autocompleteInstance = autocompleteSearch({
+    detachedMediaQuery: '',
+    placeholder: '',
+    container: '#search',
+    insights: true,
+    openOnFocus: true,
+    initialState: (e) => {
+
+    },
+    onStateChange: (e) => {
+
+
+      let count = -1;
+      if (!e.state.isOpen && e.state.query) {
+        e.setQuery("");
+        count = -1;
+      }
+      
+      
+
+      try {
+        count = e.state.collections[0].items.length;
+      } catch (error) {
+        count = -1; // Use a different variable name for the catch scope if necessary
+      }
+
+      const panel = document.querySelector('.aa-Source');
+      let resultsCountElement = document.querySelector('.results-count');
+      if (!resultsCountElement && panel) {
+        resultsCountElement = document.createElement('div');
+        resultsCountElement.className = 'results-count';
+        panel.insertBefore(resultsCountElement, panel.firstChild); // Adjust as needed to fit your UI
+      }
+      
+
+      if (resultsCountElement) {
+                resultsCountElement.style.display = 'none';
+
+        resultsCountElement.style.fontWeight = 'bold'; // Apply bold font weight for both cases
+        
+        console.log(e.state.query)
+
+        if (e.state.query) {
+          document.querySelector(".aa-Panel").style.display = "block";
+          
+          resultsCountElement.innerHTML = `<a target="_blank" href="https://www.algolia.com/"><img style="width: 100px" src="/assets/site_resources/Algolia-logo-blue.png" alt="Algolia"></a><br><br><br>`;
+
+          if (count === 50) {
+            resultsCountElement.innerHTML += `Top 50 results`;
+          } else {
+            resultsCountElement.innerHTML += `${count} results`;
+          }
+          resultsCountElement.style.display = ''; // Make sure it's visible
+          resultsCountElement.style.padding = '16px 0px 16px 18px';
+
+        } else {
+          resultsCountElement.style.display = 'none';
+          try {
+
+            document.querySelector(".aa-Panel").style.display = "none";
+
+
+          } catch (e) {}
+        }
+      }
+
+
+    },
+    source: function(query, callback) {
+      if (query.length > 2) {
+        hitsSource(query, function(suggestions) {
+          callback(suggestions);
+        });
+      }
+
+    },
+
+    getSources({
+      query
+    }) {
+      return [{
+        sourceId: 'products',
+        getItems() {
+          defaultObjectIDs = []
+
+          // previous default:
+          /*
+          "https://warwick-dev.ukmsl.net/societies-sports/",
+            "https://warwick-dev.ukmsl.net/your-union/",
+            "https://warwick-dev.ukmsl.net/student-voice/",
+            "https://warwick-dev.ukmsl.net/help-support/",
+            "https://warwick-dev.ukmsl.net/campaigns-communities/"
+          */
+
+          if (!query) {
+            // Fetch items by their objectIDs when query is empty
+            return searchClient.multipleQueries(
+              defaultObjectIDs.map(objectID => ({
+                indexName: 'main',
+                query: '',
+                params: {
+                  filters: `objectID:"${objectID}"`,
+                  hitsPerPage: 1
+                }
+              }))
+            ).then(results => {
+              // Flatten the results and return
+              return results.results.map(r => r.hits).flat();
+            });
+          }
+
+          return getAlgoliaResults({
+            searchClient,
+            queries: [{
+              indexName: 'main',
+              query,
+              params: {
+                hitsPerPage: 50,
+                //filters: ""
+                // https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/
+              },
+            }, ],
+          });
+        },
+        // https://github.com/algolia/autocomplete/issues/1092, 
+        templates: {
+
+          noResults() {
+            return null;
+          },
+          item({
+            item,
+            components,
+            html
+          }) {
+
+            const tag = (item.Type || item.RecordType || "").toUpperCase().split(" ")[0];
+
+            // default and page
+            let colour = "#df2673";
+
+            switch (tag) {
+              case "SOCIETY":
+                colour = "#027788";
+                break;
+              case "SPORTS":
+                colour = "#027788";
+                break;
+              case "EVENT":
+                colour = "#825ea7";
+                break;
+              case "NEWS":
+                colour = "#5c5c61";
+                break;
+              case "PAGE":
+              default:
+                break;
+            }
+
+            return html`
+            <a href="${item.Url}" id="${item.Type}" class="item-container">
+            <div class="item-image">
+                            <img src="${item.ImageUrl}?thumbnail=true&height=100&width=100&resize_type=CropToFit" alt="${item.Title}"/>
+            </div>
+                <div class="header-container">
+                    <div class="item-title-container">
+                        <p class="item-title">${item.Title || item.Name}</p>
+                        <p class="item-tag" style="background-color:${colour}">${tag}</p>
+                    </div>
+                    <p class="item-url">${urlToBreadcrumbs(item.Url)}</p>
+                
+
+                </div>
+                <p class="item-description">${item.Description}</p>
+            </a>`;
+          },
+        },
+      }, ];
+    },
+  });
+          </script>
+         </div>
+         <div id="basketIcon">
+          <a class="dropdown-toggle js-basket" data-toggle="dropdown" href="#">
+           <img alt="Basket" src="/stylesheet/WarwickSU2019/shopping-basket.png">
+            <span class="caret">
+            </span>
+           </img>
+          </a>
+          <ul class="dropdown-menu" id="basketMenuHax" role="menu">
+          </ul>
+         </div>
+        </div>
+        <!--<div id="searchIcon"></div>-->
+        <!--<label for='#ctl00_search_txtSearchStr' style='display: none'>Search</label>-->
+        <!--
+<div id="search">
+    <div role="search" class="mslwidget">
+	<div id="ctl00_ctl23_pnlSearch" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_ctl23_btnSubmit&#39;)">
+	
+		<label for="ctl00_ctl23_txtSearchStr" id="ctl00_ctl23_lblSearch" class="msl-visually-hidden">Search</label>
+	    <input name="ctl00$ctl23$txtSearchStr" type="text" id="ctl00_ctl23_txtSearchStr" class="textbox" />
+	    
+	    <input type="submit" name="ctl00$ctl23$btnSubmit" value="Search" id="ctl00_ctl23_btnSubmit" class="button" />
+	
+</div>
+	</div>
+</div>
+-->
+       </div>
+       <div class="mslwidget" id="advertTop1">
+       </div>
+      </div>
+      <a class="logo" href="/" id="ctl00_ctl19_lnkHome">
+       <img alt="Warwick SU" id="ctl00_ctl19_imgLogo" src="/assets//site_resources/su-logo-header.png"/>
+      </a>
+     </div>
+     <div id="menu-content">
+      <menu class="maxWidth">
+       <input class="nav-trigger" id="nav-open" name="navigation" type="radio"/>
+       <label for="nav-open">
+        <div id="nav-icon3">
+         <span>
+         </span>
+         <span>
+         </span>
+         <span>
+         </span>
+        </div>
+       </label>
+       <input class="nav-trigger" id="nav-close" name="navigation" type="radio"/>
+       <label for="nav-close">
+       </label>
+       <div class="mslwidget top-level" id="main-menu">
+        <ul class="msl_navbar">
+         <li>
+          <a class="msl-itemhassubnav" href="/your-union/">
+           <span class="nav-text">
+            Your Union
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_your-union_">
+           <li>
+            <a class="nav_your-union_how-the-su-works_" href="/your-union/how-the-su-works/">
+             How The SU Works
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_jobs_" href="/your-union/jobs/">
+             Jobs
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_postgraduate_" href="/your-union/postgraduate/">
+             Postgraduate
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_news_" href="/news/">
+             SU News
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_su-structure_" href="/your-union/su-structure/">
+             SU Structure
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_sustainability_" href="/your-union/sustainability/">
+             Sustainability
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_totum_" href="https://totum.com/" target="_blank">
+             TOTUM Discount Card
+            </a>
+           </li>
+           <li>
+            <a class="nav_your-union_welcomehub_" href="/your-union/contact/welcomehub">
+             Welcome Hub
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a class="msl-itemhassubnav" href="/societies-sports/">
+           <span class="nav-text">
+            Societies &amp; Sports
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_societies-sports_">
+           <li>
+            <a class="nav_societies-sports_donations_" href="/societies-sports/donations/">
+             Donations
+            </a>
+           </li>
+           <li>
+            <a class="nav_societies-sports_exec-resources_" href="/societies-sports/exec-resources/">
+             Exec Resources
+            </a>
+           </li>
+           <li>
+            <a class="nav_societies-sports_societies_" href="/societies-sports/societies/">
+             Societies
+            </a>
+           </li>
+           <li>
+            <a class="nav_societies-sports_sports-clubs_" href="/societies-sports/sports-clubs/">
+             Sports Clubs
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a class="msl-itemhassubnav" href="/venues-events/">
+           <span class="nav-text">
+            Food, Drink &amp; Events
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_venues-events_">
+           <li>
+            <a class="nav_venues-events_events_" href="/venues-events/events/">
+             Events
+            </a>
+           </li>
+           <li>
+            <a class="nav_venues-events_eating-drinking_" href="/venues-events/eating-drinking/">
+             Food &amp; Drink
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a class="msl-itemhassubnav" href="/student-voice/">
+           <span class="nav-text">
+            Student Voice
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_student-voice_">
+           <li>
+            <a class="nav_student-voice_academic-representation_" href="/student-voice/academic-representation/">
+             Academic Representation
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_all-student-vote_" href="/student-voice/all-student-vote/">
+             All Student Vote
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_democratic-calendar_" href="/student-voice/democratic-calendar/">
+             Democratic Calendar
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_democratic-structures_" href="/student-voice/democratic-structures/">
+             Democratic Structures
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_elected-leaders_" href="/student-voice/elected-leaders/">
+             Elected Leaders
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_elections_" href="/student-voice/elections/">
+             Elections
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_events_" href="/student-voice/events/">
+             Events
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_impact-assessment-guide_" href="/student-voice/impact-assessment-guide/">
+             Impact Assessment Guide
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_make-a-change_" href="/student-voice/make-a-change/">
+             Make a Change
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_roles-and-opportunities_" href="/student-voice/roles-and-opportunities/">
+             Roles &amp; Opportunities
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_scrutiny-panel_" href="/student-voice/scrutiny-panel/">
+             Scrutiny Panel
+            </a>
+           </li>
+           <li>
+            <a class="nav_student-voice_student-council_" href="/student-voice/student-council/">
+             Student Council
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a class="msl-itemhassubnav" href="/help-support/">
+           <span class="nav-text">
+            Help &amp; Support
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_help-support_">
+           <li>
+            <a class="nav_help-support_academic_" href="/help-support/academic/">
+             Academic Advice
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_cost-of-living_" href="/help-support/cost-of-living/">
+             Cost of Living
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_feedback_" href="/help-support/feedback/">
+             Feedback
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_health_" href="/help-support/health/">
+             Health &amp; Wellbeing
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_housemates-wanted_" href="/help-support/housemates-wanted/">
+             Housemates Wanted
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_housing_" href="/help-support/housing/">
+             Housing
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_money_" href="/help-support/money/">
+             Money
+            </a>
+           </li>
+           <li>
+            <a class="nav_help-support_rate-your-landlord_" href="/help-support/rate-your-landlord/">
+             Rate Your Landlord
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a class="msl-itemhassubnav" href="/campaigns-communities/">
+           <span class="nav-text">
+            Campaigns
+           </span>
+          </a>
+          <ul class="level_1 subnav_nav_campaigns-communities_">
+           <li>
+            <a class="nav_campaigns-communities_active_" href="/campaigns-communities/campaigns/active/">
+             Active Campaigns
+            </a>
+           </li>
+           <li>
+            <a class="nav_campaigns-communities_funding_" href="/campaigns-communities/funding/">
+             Funding
+            </a>
+           </li>
+           <li>
+            <a class="nav_campaigns-communities_start_" href="/campaigns-communities/start/">
+             Start a Campaign
+            </a>
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </div>
+      </menu>
+     </div>
+     <div class="mslwidget">
+      <!-- variables used to customize pop up behavior -->
+      <script id="variables">
+       // enable or disable the pop up entirely
+  const enablePopUp = true;
+
+  // select one of the following options:
+  // autumn, spring, summer, asv
+  const popUpType = 'spring';   
+
+  // start display date and time. Format: YYYY-MM-DD HH:MM:SS (24h)
+  const startDateTime = new Date("March 9, 2026 09:00:00");  // 04/03/24 9am
+
+  // end display date and time. Format: YYYY-MM-DD HH:MM:SS (24h)
+  const endDateTime = new Date("March 13, 2026 17:00:00");   // 08/03/23 4pm
+
+  // href link for the "vote now" button
+  const hrefLink = 'https://www.warwicksu.com/elections-redirect/?utm_source=website&utm_medium=popup&utm_campaign=elections-vote-spring-2026';
+      </script>
+      <!-- main pop up HTML -->
+      <aside class="signup-modal" id="election-message" style="display:none;">
+       <div class="signup-modal--overlay">
+       </div>
+       <div class="signup-modal--card">
+        <div class="close">
+         <img alt="Close button" id="election-pop-up-close-button" src="/assets/site_resources/close-button.png">
+         </img>
+        </div>
+        <div class="pop-up-container">
+         <h3 id="election-pop-up-header">
+          Have you voted in the SU Spring Elections?
+         </h3>
+         <p id="election-pop-up-text">
+          Don't forget to self-define to be eligible to vote for your representatives.
+         </p>
+         <p>
+          It only takes a few minutes!
+         </p>
+        </div>
+        <div class="pop-up-image">
+         <img alt="Nominate" src="/assets/site_resources/makeyourmark-popup-logo.png" title="">
+         </img>
+        </div>
+        <span class="vote-now-button">
+         <a href="#" id="vote-now-button-link">
+          Vote
+        now
+         </a>
+        </span>
+       </div>
+      </aside>
+      <!-- css shared among all pop up types -->
+      <!-- always enabled -->
+      <style id="common-styles">
+       a {
+    -o-transition: 0.7s;
+    -ms-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -webkit-transition: 0.7s;
+    transition: 0.7s;
+    outline: 0;
+  }
+
+  .pop-up-container {
+    width: 290px;
+    float: left;
+  }
+
+  .pop-up-image {
+    float: left;
+    width: 270px;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .pop-up-image img {
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .pop-up-image {
+      display: none;
+    }
+
+    .pop-up-container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #election-message {
+      display: none;
+    }
+  }
+
+  #election-message {
+    display: none;
+  }
+
+  .signup-modal {
+    display: block;
+  }
+
+  .signup-modal.is-open {
+    display: block;
+  }
+
+  .signup-modal--overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  .signup-modal--card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    max-width: 80%;
+    box-shadow: 0px 3px 30px 10px rgb(0 0 0 / 50%);
+    border-radius: 10px;
+    z-index: 9999;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    -webkit-animation: hello 0.5s linear;
+    animation: hello 0.5s linear;
+    background-color: #FFF;
+  }
+
+  .signup-modal .close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 19px;
+    color: #999;
+    cursor: pointer;
+    top: -15px;
+    right: -15px;
+  }
+
+  .signup-modal .close:hover {
+    color: #666;
+  }
+
+  .hide-me {
+    display: none;
+  }
+
+  .close {
+    background: none;
+  }
+      </style>
+      <!-- css for the autumn pop up type -->
+      <!-- enabled when popUpType = 'autumn', disabled otherwise -->
+      <style id="autumn-styles">
+       span.vote-now-button a {
+    background-image: linear-gradient(#d38d4c, #e0612c);
+    /* AUTUMN */
+    display: inline-block;
+    padding: 20px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  span.vote-now-button a:hover {
+    background-image: linear-gradient(#e0612c, #e0612c);
+    /* AUTUMN */
+    display: inline-block;
+    padding: 20px 200px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .pop-up-container h3 {
+    font-size: 29px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #c67219 !important;
+    /* AUTUMN */
+    text-align: left;
+    padding-top: 0;
+    padding-right: 10px;
+    margin-top: 0;
+  }
+
+  .pop-up-container p {
+    font-size: 17px;
+    text-align: left;
+    line-height: 25px;
+    color: #777777;
+  }
+      </style>
+      <!-- css for the spring pop up type -->
+      <!-- enabled when popUpType = 'spring', disabled otherwise -->
+      <style id="spring-styles">
+       span.vote-now-button a {
+    background-image: linear-gradient(#c4da7d, #697d27);
+    /* SPRING */
+    display: inline-block;
+    padding: 20px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  span.vote-now-button a:hover {
+    background-image: linear-gradient(#a2b760, #697d27);
+    /* SPRING */
+    display: inline-block;
+    padding: 20px 200px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .pop-up-container h3 {
+    font-size: 29px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #5a6d1f !important;
+    /* SPRING */
+    text-align: left;
+    padding-top: 0;
+    padding-right: 10px;
+    margin-top: 0;
+  }
+
+  .pop-up-container p {
+    font-size: 17px;
+    text-align: left;
+    line-height: 25px;
+    color: #777777;
+  }
+      </style>
+      <!-- css for the summer pop up type -->
+      <!-- enabled when popUpType = 'summer', disabled otherwise -->
+      <style id="summer-styles">
+       span.vote-now-button a {
+    background-image: linear-gradient(#1979A9, #1359BF);
+    /* SUMMER */
+    display: inline-block;
+    padding: 20px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  span.vote-now-button a:hover {
+    background-image: linear-gradient(#13B3BF, #1979A9);
+    /* SUMMER */
+    display: inline-block;
+    padding: 20px 200px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .pop-up-container h3 {
+    font-size: 29px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #1979A9 !important;
+    /* SUMMER */
+    text-align: left;
+    padding-top: 0;
+    padding-right: 10px;
+    margin-top: 0;
+  }
+
+  .pop-up-container p {
+    font-size: 17px;
+    text-align: left;
+    line-height: 25px;
+    color: #5c5c61;
+  }
+      </style>
+      <!-- css for the ASV pop up type -->
+      <!-- enabled when popUpType = 'asv', disabled otherwise -->
+      <style id="asv-styles">
+       span.vote-now-button a {
+    background-image: linear-gradient(#8e2364, #e24385);
+    /* ASV */
+    display: inline-block;
+    padding: 20px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  span.vote-now-button a:hover {
+    background-image: linear-gradient(#e24385, #e24385);
+    /* ASV */
+    display: inline-block;
+    padding: 20px 200px;
+    font-size: 21px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .pop-up-container h3 {
+    font-size: 29px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #E24385 !important;
+    /*ASV*/
+    text-align: left;
+    padding-top: 0;
+    padding-right: 10px;
+    margin-top: 0;
+  }
+
+  .pop-up-container p {
+    font-size: 17px;
+    text-align: left;
+    line-height: 25px;
+    color: #777777;
+  }
+      </style>
+      <!-- manages pop up style changes -->
+      <script id="main-script">
+       // get elements from the DOM that need to be manipulated depending on the pop up type
+  const button = document.getElementById('election-pop-up-close-button');
+  const header = document.getElementById('election-pop-up-header');
+  const text = document.getElementById('election-pop-up-text');
+
+  // get the style sheets that need to be manipulated depending on the pop up type
+  const autumnStyles = document.getElementById('autumn-styles');
+  const springStyles = document.getElementById('spring-styles');
+  const summerStyles = document.getElementById('summer-styles');
+  const asvStyles = document.getElementById('asv-styles');
+
+  // set the href of the vote now button
+  document.getElementById('vote-now-button-link').href = hrefLink;
+
+  switch (popUpType) {
+    case 'autumn':
+      // set DOM elements to autumn values
+      button.src = '/assets/site_resources/close-button.png';
+      header.innerHTML = 'Have you voted in the SU Autumn Elections?';
+
+      // set style sheets to autumn values, disable others
+      autumnStyles.disabled = false;
+      springStyles.disabled = true;
+      summerStyles.disabled = true;
+      asvStyles.disabled = true;
+      break;
+    case 'spring':
+      // set DOM elements to spring values
+      button.src = '/assets/site_resources/close-button-green.png';
+      header.innerHTML = 'Have you voted in the Spring Officer Elections?';
+      text.style.display = 'none';
+
+      // set style sheets to spring values, disable others
+      autumnStyles.disabled = true;
+      springStyles.disabled = false;
+      summerStyles.disabled = true;
+      asvStyles.disabled = true;
+      break;
+    case 'summer':
+      // set DOM elements to summer values
+      button.src = '/assets/site_resources/close-button-summer.png';
+      header.innerHTML = 'Have you voted in the Summer Elections?';
+      text.style.display = 'none';
+
+      // set style sheets to summer values, disable others
+      autumnStyles.disabled = true;
+      springStyles.disabled = true;
+      summerStyles.disabled = false;
+      asvStyles.disabled = true;
+      break;
+    case 'asv':
+      // set DOM elements to ASV values
+      button.src = '/assets/site_resources/close-button-asv.png';
+      header.innerHTML = 'Have you voted in the All Student Vote?';
+      text.style.display = 'none';
+
+      // set style sheets to ASV values, disable others
+      autumnStyles.disabled = true;
+      springStyles.disabled = true;
+      summerStyles.disabled = true;
+      asvStyles.disabled = false;
+      break;
+  }
+      </script>
+      <!-- manages cookie distribution and verification -->
+      <script id="cookie-handler">
+       // predicate test to see if the pop up should be displayed
+  function isInTimeRange() {
+    const now = new Date();
+    return now >= startDateTime && now <= endDateTime;
+  }
+
+  $(document).ready(function () {
+
+    // display if no cookie
+    if ($.cookie('election-popup') == null && enablePopUp && isInTimeRange()) {
+      document.getElementById("election-message").style.display = "block";
+    } else {
+      // document.getElementById("election-message").style.display = "none";
+      // remove modal instead of just hiding
+      document.getElementById("election-message").remove();
+      document.getElementById("main-script").remove();
+      document.getElementById("variables").remove();
+    }
+
+    // hides button on click
+    // if the cookie is true, hide the initial message and show the other one
+    try{
+        if ($.cookie('election-popup') == 'yes') {
+          // document.getElementById("election-message").style.display = "none";
+          // remove modal instead of just hiding
+          document.getElementById("election-message").remove();
+          document.getElementById("main-script").remove();
+          document.getElementById("variables").remove();
+          $.cookie('election-popup', 'yes', { expires: 3, path: '/' });
+        }
+    }catch (error) {
+        console.error("An error occurred while executing the script:", error);
+    }
+
+    // when clicked on icon do something
+    $('.close').click(function () {
+      // check that icon was not clicked before (hidden)
+      if (!$('#election-message').is('hide--first')) {
+        //document.getElementById("election-message").style.display = "none";
+        // remove modal instead of just hiding
+        document.getElementById("election-message").remove();
+        document.getElementById("main-script").remove();
+        document.getElementById("variables").remove();
+
+        // add cookie setting that user has clicked
+        $.cookie('election-popup', 'yes', { expires: 3, path: '/' });
+      }
+      return false;
+    });
+
+    $('.vote-now-button').click(function () {
+      // check that icon was not cliked before (hidden)
+      if (!$('#election-message').is('hide--first')) {
+        window.location.href = hrefLink;
+        // add cookie setting that user has clicked
+        $.cookie('election-popup', 'yes', { expires: 3, path: '/' });
+      }
+      return false;
+    });
+
+  });
+      </script>
+      <!-- jQuery cookie script -->
+      <script id="cookie-script" src="/assets/site_resources/cookie.js" type="text/javascript">
+      </script>
+     </div>
+    </header>
+    <!-- end of core2019-header snippet -->
+    <div class="about" id="page-content">
+     <div class="mslwidget" id="advertTop2">
+     </div>
+     <div id="section-heading">
+      <div class="mslwidget maxWidth msl-pagebanner" id="topBannerG">
+       <img alt="Checking if this get picked in the feed" height="450" src="/pageassets/all.jpg?thumbnail=true&amp;height=450&amp;width=1100&amp;resize_type=CropToFit" width="1100"/>
+      </div>
+      <div class="maxWidth">
+       <div id="pageHeading">
+        <nav aria-label="Breadcrumb" class="msl-breadcrumb" id="breadcrumb">
+         <ul class="breadcrumb">
+          <li aria-current="page" class="current-page">
+           <span>
+            Login
+           </span>
+          </li>
+         </ul>
+        </nav>
+        <h1 class="mslwidget pageTitle">
+         Login
+        </h1>
+       </div>
+      </div>
+     </div>
+     <div class="grid-row maxWidth">
+      <div class="grid-col grid-col-4-4" id="page-content-body">
+       <div class="pageContent">
+        <h2>
+         Log In to WarwickSU.com
+        </h2>
+        <section class="box pink">
+         Warwick Students
+        </section>
+        <section class="draw" style="display: block;">
+         <p>
+          If you're a student at the University of Warwick, you should log in to the Warwick SU website using your IT Services username and password.
+         </p>
+         <div class="mslwidget" id="studentlogin">
+          <a class="msl-sso-login-link" href="/sso/login.ashx?idp=uow&amp;ReturnUrl=%2fadmin%2fdirectory%2f" id="ctl00_ssologincontrol_hlExtLogin" rel="nofollow">
+           Log in using your University ITS account
+          </a>
+         </div>
+        </section>
+        <section class="box blue">
+         Alumni/Guests
+        </section>
+        <section class="draw">
+         <p>
+          Not a student at the University of Warwick? If you're a member of the public, Warwick alumni, student at another university or University staff, you can
+          <a href="/account/register/guest/">
+           create a Warwick SU account
+          </a>
+          and use it to purchase tickets for events, associate memberships and products in our online shop.
+         </p>
+         <p>
+          If your account was created after the 05/09/2023, your Username will be your email address, so please use this when logging in.
+         </p>
+         <div class="info-box info-box-force" id="login">
+          <div class="mslwidget">
+           <div class="sidepanel">
+            <h3>
+             Freshers, Alumni and Guests Login
+            </h3>
+            <div class="login" id="ctl00_stdlogin_pnlStandardLogin" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_stdlogin_btnLogin')">
+             <label for="ctl00_stdlogin_UserName" id="ctl00_stdlogin_lblUserName">
+              Username (Student ID for Freshers) or email address
+             </label>
+             <input class="textbox" id="ctl00_stdlogin_UserName" name="ctl00$stdlogin$UserName" type="text">
+              <label for="ctl00_stdlogin_Password" id="ctl00_stdlogin_lblPassword">
+               Password
+              </label>
+              <input class="textbox" id="ctl00_stdlogin_Password" name="ctl00$stdlogin$Password" type="password">
+               <input class="button" id="ctl00_stdlogin_btnLogin" name="ctl00$stdlogin$btnLogin" type="submit" value="Log In"/>
+              </input>
+             </input>
+            </div>
+            <div class="login">
+             <a href="/account/resetpassword/" id="ctl00_stdlogin_lnkForgottenPassword" rel="nofollow">
+              Forgotten Password
+             </a>
+            </div>
+           </div>
+          </div>
+          <a class="button" href="/account/register/guest/">
+           Create a Guest Account
+          </a>
+          <div class="killfloat">
+          </div>
+         </div>
+        </section>
+        <section class="box blue">
+         Warwick SU Staff
+        </section>
+        <section class="draw">
+         <p>
+          If you're a Warwick SU staff member, please log in using your @warwicksu.com Microsoft email address and password.
+         </p>
+         <div class="mslwidget" id="stafflogin">
+          <a class="msl-sso-login-link" href="/sso/login.ashx?idp=aad&amp;ReturnUrl=%2fadmin%2fdirectory%2f" id="ctl00_ssostafflogin_hlExtLogin" rel="nofollow">
+           Log in using your staff IT account
+          </a>
+         </div>
+        </section>
+       </div>
+      </div>
+      <!-- start of adverts snippet -->
+      <div class="grid-col" id="page-content-advert">
+       <div id="header-advert">
+        <div class="mslwidget" id="advertHome1">
+        </div>
+        <div class="mslwidget" id="advertHome2">
+        </div>
+       </div>
+      </div>
+      <!-- end of adverts snippet -->
+     </div>
+    </div>
+    <!-- start of core2019-footer snippet -->
+    <script type="text/javascript">
+     document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById('enableRecite').addEventListener("click", function () {
+        loadService();
+    });
+
+    // get query params
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // if accessibility is true, load ReciteMe
+    if (urlParams.get('accessibility') === 'true') {
+        loadService();
+
+        // redirect to page without accessibility param
+        setTimeout(function () {
+            window.location.href = window.location.href.replace('?accessibility=true', '?translate=true');
+        }, 1000);
+    }
+
+    // if translate is true, click the translate ReciteMe button
+    if (urlParams.get('translate') === 'true') {
+        setTimeout(function () {
+            document.getElementById('recite-toolbar-button-language').click();
+        }, 1000);
+    }
+});
+function _reciteLoaded(){
+    // Turn off autoplay
+    Recite.Event.subscribe("Preferences:load", function () {
+        Recite.Preferences.set("player.autoplay", false);
+    });
+    Recite.Event.subscribe("Preferences:reset", function () {
+        Recite.Preferences.set("player.autoplay", false);
+    });
+}
+
+        var serviceUrl = "//api.reciteme.com/asset/js?key=";
+        var serviceKey = "3466901164bf4f54afab945598ebbb2f8286ecc5";
+        var options = { "Tracker": {
+        "Ga": {
+            "enabled": true,
+            }
+        }};  // Options can be added as needed
+        var autoLoad = false;
+        var enableFragment = "#reciteEnable";
+        var loaded = [], frag = !1; window.location.hash === enableFragment && (frag = !0); function loadScript(c, b) { var a = document.createElement("script"); a.type = "text/javascript"; a.readyState ? a.onreadystatechange = function () { if ("loaded" == a.readyState || "complete" == a.readyState) a.onreadystatechange = null, void 0 != b && b() } : void 0 != b && (a.onload = function () { b() }); a.src = c; document.getElementsByTagName("head")[0].appendChild(a) } function _rc(c) { c += "="; for (var b = document.cookie.split(";"), a = 0; a < b.length; a++) { for (var d = b[a]; " " == d.charAt(0);)d = d.substring(1, d.length); if (0 == d.indexOf(c)) return d.substring(c.length, d.length) } return null } function loadService(c) { for (var b = serviceUrl + serviceKey, a = 0; a < loaded.length; a++)if (loaded[a] == b) return; loaded.push(b); loadScript(serviceUrl + serviceKey, function () { "function" === typeof _reciteLoaded && _reciteLoaded(); "function" == typeof c && c(); Recite.load(options); Recite.Event.subscribe("Recite:load", function () { Recite.enable() }) }) } "true" == _rc("Recite.Persist") && loadService(); if (autoLoad && "false" != _rc("Recite.Persist") || frag) document.addEventListener ? document.addEventListener("DOMContentLoaded", function (c) { loadService() }) : loadService();
+    </script>
+    <footer>
+     <div class="maxWidth">
+      <div id="footer-about">
+       <h3 style="margin-top: 0.8547em">
+        About Warwick SU
+       </h3>
+       <p>
+        The Students’ Union is the focal point of campus life here at Warwick, but what exactly is it that makes your Union so unique?
+        <a href="/your-union/">
+         Find out more about the SU and what we do
+        </a>
+        .
+       </p>
+       <h3>
+        Contact Us
+       </h3>
+       <p>
+        We only exist to provide services for our members, so your feedback really is important to us.
+       </p>
+       <p>
+        <a href="/your-union/contact/">
+         Get in touch
+        </a>
+        with your questions, comments and complaints and we’ll get back to you within three working days.
+       </p>
+      </div>
+      <div id="footer-links">
+       <div id="footer-links-stuff">
+        <h3>
+         Useful Stuff
+        </h3>
+        <ul>
+         <li>
+          <a href="http://www2.warwick.ac.uk/" target="_blank">
+           Warwick University
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/jobs/">
+           Jobs at Warwick SU
+          </a>
+         </li>
+         <li>
+          <a href="https://warwicksultd.sharepoint.com/:f:/s/WarwickSU-AllStaff/Ek-1cHD5Q61Okz8bPmYhZKUBnxkZfFsKinRNW9ue_mxr4A?e=UaBkwS">
+           Staff Intranet
+          </a>
+         </li>
+         <li>
+          <a href="/mediasales/">
+           Advertise with Warwick SU
+          </a>
+         </li>
+         <li>
+          <a href="/directory/">
+           Local Business Directory
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/room-hire/">
+           Venue Hire
+          </a>
+         </li>
+         <li>
+          <a href="https://outlook.office365.com/">
+           Warwick SU Email
+          </a>
+         </li>
+         <li>
+          <a href="https://finance.warwicksu.com/students/">
+           Club &amp; Society Finance Tools
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div id="footer-links-tech">
+        <h3>
+         Technical Bits
+        </h3>
+        <ul>
+         <li>
+          <a href="/your-union/tac/">
+           Terms and Conditions
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/tac/codeofconduct/">
+           Members Code of Conduct
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/privacy/">
+           Privacy Statement
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/privacy/cookies/">
+           Cookies Policy
+          </a>
+         </li>
+         <li>
+          <a href="/your-union/gender-pay-gap-reports/">
+           Gender Pay Gap Reports
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div id="footer-links-social">
+        <h3>
+         Follow Us
+        </h3>
+        <ul>
+         <li class="footer-links-social-instagram">
+          <a href="https://www.instagram.com/warwicksuofficial/" target="_blank">
+           <img alt="Warwick SU Instagram" height="34px" src="/assets/site_resources/icon-instagram.svg" width="34px"/>
+          </a>
+         </li>
+         <li class="footer-links-social-rednote">
+          <a href="https://xhslink.com/m/e7jxiP3zEb" target="_blank">
+           <img alt="Warwick SU Rednote" height="34px" src="/assets/site_resources/icon-rednote.png" width="34px"/>
+          </a>
+         </li>
+         <li class="footer-links-social-instagram">
+          <a href="https://www.tiktok.com/@warwicksuofficial" target="_blank">
+           <img alt="Warwick SU Instagram" height="34px" src="/assets/site_resources/icon-tiktok.svg" width="34px"/>
+          </a>
+         </li>
+         <li class="footer-links-social-youtube">
+          <a href="https://www.youtube.com/user/warwickstudentsunion" target="_blank">
+           <img alt="Warwick SU Youtube" height="34px" src="/assets/site_resources/icon-youtube.svg" width="34px"/>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div id="footer-details">
+       <img alt="ASFY Logo" src="/assets//site_resources/ASFY-logo-white-01-resized.png" style="width: 60px; height: 60px"/>
+       <ul>
+        <li>
+         © Warwick SU
+        </li>
+        <li>
+         Gibbet Hill Road, Coventry, CV4 7AL
+        </li>
+        <li>
+         <a href="/your-union/company-details/">
+          Charity &amp; Company Details
+         </a>
+        </li>
+        <!--<li><div id="recite-me">
+            	  <a href="#" alt="Launch Recite Me assistive technology" id="enableRecite">Accessibility Tools</a>
+            </div></li>
+        -->
+        <div alt="Recite Me accessibility and Language Support" class="reciteme-button" id="enableRecite" title="Launch Recite Me">
+         <img alt="Recite Me accessibility and Language Support" src="/assets/site_resources/reciteme_button.png" title="Launch Recite Me"/>
+         <span>
+          Accessibility &amp; Language
+         </span>
+        </div>
+       </ul>
+      </div>
+     </div>
+    </footer>
+    <script>
+     $(document).ready(function() {
+
+ $("header #basketIcon").click(function(){
+    $("header #basket").slideToggle();
+ });
+        
+ var itemQuantity = 0;
+ $('header dd.qty').each(function(index) {
+	match = /(Quantity: )(\d*)/.exec( $(this).text() );
+    itemQuantity = itemQuantity + parseInt(match[2]);
+ });
+ $('.js-basket span.caret').before(' <span class="badge quantity">'+itemQuantity+'</span>');
+
+
+
+$('#basket dd.qty a').each(function() {
+   $(this).insertBefore($(this).parent());
+});
+
+$('#basket .remove').each(function() {
+    $(this).insertBefore($(this).prev());
+});
+
+
+
+
+$("#basket dd.qty").each(function() {
+
+   $(this).text(function () {
+        $(this).append("<p>x</p>");
+        return $(this).text().replace("Quantity:", ""); 
+   });
+   
+   var sib = $(this).prev().prev().prev();
+   sib.before($(this));
+   
+  });
+
+     $("#basket dl dt").each(function(index) {
+	   $(this).next("dd.price").next("dd.qty").addBack().wrapAll("<div class='item-wrapper' />");
+	});
+	$("#basket dl .item-wrapper").each(function(index) {
+	   $(this).prev("dt").addBack().wrapAll("<div class='item-container-c' />");
+	});
+
+    $('.item-container-c').each(function () {
+        $(this).find(".item-wrapper .qty").detach().prependTo($(this));
+    });
+
+  
+
+
+    $( ".menuSideNavMob .navClick" ).click(function() {
+        $( ".col-submenu" ).slideToggle();
+        $(this).toggleClass('open');
+    });
+    
+    $('img.msl-imagenav-image').each(function(){
+        if (! $(this).attr('alt')) {
+            $(this).attr('alt', $(this).prev().text() + ' page button');
+        }
+    });
+   
+});
+    </script>
+    <!-- end of core2019-footer snippet -->
+   </div>
+  </form>
+ </body>
+</html>
