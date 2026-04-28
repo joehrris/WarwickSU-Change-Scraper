@@ -1,0 +1,149 @@
+ASP Example
+Current selection:
+no
+Complete your profile
+Thanks for logging in to WarwickSU.com. Please take a few moments to complete your profile.
+Update Your Profile
+membershipapi
+>
+examples
+>
+ASP Example
+ASP Example
+<%
+'=========================================
+'
+'    Membership API 0.1
+'
+'    Code Examples - Classic ASP
+'    15 Nov 2006 Justin Wignall
+'
+'
+'    Please note the code displayed below is NOT suggested as a best practice
+'    It should however enable you to get started to plugin in to the API
+'    with little knowledge of the underlying code
+'    To use this code you need to supply
+'
+'    1) An API key generated in the Membersahip API section.
+'    2) Optionally a PersonKey to check if a particular user is
+'       valid and who they say they are.
+'
+'=========================================
+Dim Key
+Dim PersonKey
+Dim isMemberURL
+Dim listMembersURL
+Dim url
+Dim listurl
+Dim Result
+Dim UniqueID
+Dim FirstName
+Dim LastName
+Dim EmailAddress
+' Set Values
+isMemberURL = "http://www.sunion.warwick.ac.uk/membershipapi/ismember/"
+listMembersURL = "http://www.sunion.warwick.ac.uk/membershipapi/listmembers/"
+Key = "1234ab56-78cd-90e0-1324-fa56bcde7f8a"
+' For an isMember call we need the Person's key
+' This would normally be entered by the user or called from your database
+PersonKey = "123ab456"
+'=========================================
+'
+' Checking if a person is a current member
+'
+'=========================================
+' Set the url as defined in the API
+url = isMemberURL & Key & "/" & PersonKey
+Response.Write "<p>Is member: " & isMember(url,PersonKey) & "</p>"
+Response.Write "<p>Is Exec member: " & isExecMember(url,PersonKey) & "</p>"
+Result = getMemberDetails(url,FirstName,LastName,UniqueID,EmailAddress)
+response.write "<br />First Name: " & FirstName
+response.write "<br />Last Name: " & LastName
+response.write "<br />Email Address: " & EmailAddress
+response.write "<br />Unique ID: " & UniqueID
+response.write "<br />XML Returned: <pre>" & Replace(Replace(Result,"<",vbCrLf & "&lt;"),">","&gt;" & vbCrLf) & "</pre>"
+'=========================================
+'
+' Getting a list of members
+'
+' This example demonstrates loading the xml into a recordset
+' and then displying it (rather crudely...)
+' You would normally want to use the returned xml natively
+' either to run REGULAR updates on your own database
+' or display a list of current members
+'=========================================
+listurl = listMembersURL & Key & "/"
+Dim xmlhttp
+Dim source
+set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP.3.0")
+xmlhttp.Open "GET", listurl, false
+xmlhttp.Send
+set source = Server.CreateObject("Microsoft.XMLDOM")
+source.async = false
+source.loadxml(xmlhttp.ResponseText)
+Const adVarChar = 200
+Dim rs
+Set rs = Server.CreateObject("ADODB.Recordset")
+rs.Fields.Append "FirstName", adVarChar, 200
+rs.Fields.Append "LastName", adVarChar, 200
+rs.Fields.Append "UniqueID", adVarChar, 50
+rs.Fields.Append "EmailAddress", adVarChar, 200
+rs.Open
+Set MemberNodes = source.documentElement.getElementsByTagName("Member")
+FOR Each MemberNode in MemberNodes
+rs.AddNew
+rs("FirstName") = MemberNode.selectSingleNode("FirstName").Text
+rs("LastName") = MemberNode.selectSingleNode("LastName").Text
+rs("UniqueID") = MemberNode.selectSingleNode("UniqueID").Text
+rs("EmailAddress") = MemberNode.selectSingleNode("EmailAddress").Text
+rs.Update
+NEXT
+rs.MoveFirst
+Response.Write "<table><thead><tr><th>First Name</th><th>Last Name</th><th>Unique ID</th><th>Email Address</th></thead><tbody>"
+DO WHILE NOT rs.EOF
+Response.Write "<tr><td>" & rs("FirstName") & "</td>"
+Response.Write "<td>" & rs("LastName") & "</td>"
+Response.Write "<td>" & rs("UniqueID") & "</td>"
+Response.Write "<td>" & rs("EmailAddress") & "</td></tr>"
+rs.MoveNext
+LOOP
+Response.Write "</tbody></table>"
+Function isMember(url,PersonKey)
+Dim xmlhttp
+Dim source
+set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP.3.0")
+xmlhttp.Open "GET", url, false
+xmlhttp.Send
+set source = Server.CreateObject("Microsoft.XMLDOM")
+source.async = false
+source.loadxml(xmlhttp.ResponseText)
+isMember = CBool(source.documentElement.selectSingleNode("isMember").Text)
+END Function
+Function isExecMember(url,PersonKey)
+Dim xmlhttp
+Dim source
+set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP.3.0")
+xmlhttp.Open "GET", url, false
+xmlhttp.Send
+set source = Server.CreateObject("Microsoft.XMLDOM")
+source.async = false
+source.loadxml(xmlhttp.ResponseText)
+isExecMember = CBool(source.documentElement.selectSingleNode("isExecMember").Text)
+END Function
+Function getMemberDetails(url,FirstName,LastName,UniqueID,EmailAddress)
+Dim xmlhttp
+Dim source
+set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP.3.0")
+xmlhttp.Open "GET", url, false
+xmlhttp.Send
+set source = Server.CreateObject("Microsoft.XMLDOM")
+source.async = false
+source.loadxml(xmlhttp.ResponseText)
+Set MemberDetailsNodes = source.documentElement.selectSingleNode("MemberDetails")
+FirstName = MemberDetailsNodes.selectSingleNode("FirstName").Text
+LastName = MemberDetailsNodes.selectSingleNode("LastName").Text
+UniqueID = MemberDetailsNodes.selectSingleNode("UniqueID").Text
+EmailAddress = MemberDetailsNodes.selectSingleNode("EmailAddress").Text
+getMemberDetails =  xmlhttp.ResponseText
+END Function
+%>
