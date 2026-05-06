@@ -3,7 +3,7 @@
  <head>
   <!-- Powered by www.ukmsl.com - v8.84.2604.2301 -->
   <title>
-   Student Trustee
+   Login
   </title>
   <meta charset="utf-8"/>
   <link href="//static-uk.ukmsl.net/8.84/skins/print.css" media="print" rel="stylesheet" type="text/css"/>
@@ -136,8 +136,8 @@ $(document).ready(function () {
     <link href="/stylesheet/WarwickSU2019/headerfooter.css?v=114" rel="stylesheet" type="text/css"/>
     <link href="/stylesheet/WarwickSU2019/algolia-search.css?v=9" rel="stylesheet" type="text/css"/>
     <link href="/stylesheet/WarwickSU2019/generic.css?v=9" rel="stylesheet" type="text/css"/>
-    <link href="/stylesheet/WarwickSU2019/trustees.css?v=31" rel="stylesheet" type="text/css"/>
-    <link href="/pagestylesheet/your-union/how-the-su-works/trustees/student-trustee/styles.css?v=73" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheet/WarwickSU2019/login.css?v=41" rel="stylesheet" type="text/css"/>
+    <link href="/pagestylesheet/login/styles.css?v=37" media="all" rel="stylesheet" type="text/css"/>
     <!-- start of core2019-analytics snippet -->
     <!-- Google tag (gtag.js) -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-J3JHHQL3ZG">
@@ -150,56 +150,42 @@ $(document).ready(function () {
   gtag('config', 'G-J3JHHQL3ZG');
     </script>
     <!-- end of core2019-analytics snippet -->
-    <script src="/assets/site_resources/openTabOnPageLoad.js">
-    </script>
     <script type="text/javascript">
-     $( document ).ready(function() {
-  
-  //Accordion
-  $(".box").click(function(){
-     $(this).next().slideToggle("fast");
-//     $(this).toggleClass("blue");
-  });
+     $(document).ready(function() {
 
-  // First Tabs
-  $('ul.trustee-tabs li').click(function(){
-    var tab_id = $(this).attr('data-tab');
 
-    $('ul.trustee-tabs li').removeClass('current');
-    $('.trustee-tab-content').removeClass('current');
+    // add email address alias
+    const elm = document.querySelector("#ctl00_Main_emailAddress_lblTitle");
+    
+    console.log("email elm:", elm)
 
-    $(this).addClass('current');
-    $("#"+tab_id).addClass('current');
-  });
+    if (elm) {
+      elm.innerHTML = elm.innerHTML.replace('Email address', 'Email address (username)');
+    }
 
-  // Second Tabs
-  $('ul.role-tabs li').click(function(){
-    var tab_id = $(this).attr('data-tab');
 
-    $('ul.role-tabs li').removeClass('current');
-    $('.role-tab-content').removeClass('current');
-
-    $(this).addClass('current');
-    $("#"+tab_id).addClass('current');
-  });
-  
-	$(".read-more").click(function(){
-	    $(this).next().slideToggle("fast");
-	    if ($(this).html() == 'Read More') {
-	        $(this).html('Read Less');
-	    } else {
-		    $(this).html('Read More');
-	    }
+    $('.mslwidget.col-submenu a').each(function() {
+      if ($(this).attr('href') === window.location.href.replace('https://www.warwicksu.com', '')) {
+        $(this).addClass('current');
+      }
     });
 
-});
+    //Accordion
+    $(".box").click(function() {
+      $('.tab-content').removeClass('current');
+      $('.tab-content .draw').removeClass('open').hide();
+      //    $(this).toggleClass("blue");
+      $(this).next().slideToggle("fast");
+    });
+
+  });
     </script>
     <link href="https://ajax.aspnetcdn.com/ajax/act/16_1_1/Content/AjaxControlToolkit/Styles/Backgrounds.min.css" rel="stylesheet" type="text/css"/>
    </meta>
   </meta>
  </head>
  <body id="msl">
-  <form action="./" enctype="multipart/form-data" id="aspnetForm" method="post">
+  <form action="./?redirect=%2fyour-union%2fhow-the-su-works%2ftrustees%2fstudent-trustee%2f" id="aspnetForm" method="post">
    <div class="aspNetHidden">
     <input id="__EVENTTARGET" name="__EVENTTARGET" type="hidden" value=""/>
     <input id="__EVENTARGUMENT" name="__EVENTARGUMENT" type="hidden" value=""/>
@@ -245,8 +231,6 @@ var __cultureInfo = {"name":"en-GB","numberFormat":{"CurrencyDecimalDigits":2,"C
    </div>
    <script id="ctl00_commonjs" src="//static-uk.ukmsl.net/8.84/scripts/common.js" type="text/javascript">
    </script>
-   <script src="/pagestylesheet/your-union/how-the-su-works/trustees/student-trustee/scripts.js?v=73" type="text/javascript">
-   </script>
    <div class="CatchEnter" id="ctl00_pnlCatchEnter" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_btnCatchEnter')">
     <input id="ctl00_btnCatchEnter" name="ctl00$btnCatchEnter" onclick="javascript:return false;" style="display:none;" type="submit" value=""/>
    </div>
@@ -255,7 +239,7 @@ var __cultureInfo = {"name":"en-GB","numberFormat":{"CurrencyDecimalDigits":2,"C
 Sys.WebForms.PageRequestManager._initialize('ctl00$ctl04', 'aspnetForm', [], [], [], 90, 'ctl00');
 //]]>
    </script>
-   <div class="page_your-union page_how-the-su-works page_trustees page_student-trustee" id="skin_WarwickSU2019">
+   <div class="page_login" id="skin_WarwickSU2019">
     <!-- start of core2019-header snippet -->
     <script type="text/javascript">
      $(function() {
@@ -933,14 +917,14 @@ function _reciteLoaded() {
        <div class="mslwidget top-level" id="main-menu">
         <ul class="msl_navbar">
          <li>
-          <a class="current msl-itemhassubnav" href="/your-union/">
+          <a class="msl-itemhassubnav" href="/your-union/">
            <span class="nav-text">
             Your Union
            </span>
           </a>
           <ul class="level_1 subnav_nav_your-union_">
            <li>
-            <a class="nav_your-union_how-the-su-works_ current" href="/your-union/how-the-su-works/">
+            <a class="nav_your-union_how-the-su-works_" href="/your-union/how-the-su-works/">
              How The SU Works
             </a>
            </li>
@@ -1668,629 +1652,108 @@ function _reciteLoaded() {
     </header>
     <!-- end of core2019-header snippet -->
     <div class="about" id="page-content">
-     <div class="menuSideNavMob">
-      <p class="subnavTitle navClick">
-       More pages in this section
-      </p>
-      <div class="mslwidget col-submenu">
-       <ul class="level_1">
-        <li>
-         <a href="/your-union/how-the-su-works/publications-reports/annualreport/">
-          Annual Reports
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/publications-reports/strategicplan/">
-          Strategic Plan
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/finances/">
-          Financial Statements
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/governingdocuments/">
-          Governance &amp; Governing Documents
-         </a>
-        </li>
-        <li>
-         <a href="https://www.gov.uk/government/organisations/charity-commission">
-          Charity Commission
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/trustees/#the-board">
-          Trustee Board
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/trustees/#committees-meetings">
-          Meeting Dates
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/trustees/#role-details">
-          Role Details
-         </a>
-        </li>
-        <li>
-         <a href="/your-union/how-the-su-works/trustees/#policies">
-          Policies
-         </a>
-        </li>
-       </ul>
-      </div>
-     </div>
      <div class="mslwidget" id="advertTop2">
      </div>
      <div id="section-heading">
       <div class="mslwidget maxWidth msl-pagebanner" id="topBannerG">
-       <img alt="Warwick Students’ Union is recruiting Student Trustees for a two-year term starting August 2026. This voluntary role offers students a chance to shape the Union’s strategic direction, gain leadership experience, and boost employability. Applications are open to all current students until March 16th—apply now to join the Board." height="450" src="/pageassets/your-union/how-the-su-works/trustees/Trustees.jpg?thumbnail=true&amp;height=450&amp;width=1100&amp;resize_type=CropToFit" width="1100"/>
+       <img alt="Checking if this get picked in the feed" height="450" src="/pageassets/all.jpg?thumbnail=true&amp;height=450&amp;width=1100&amp;resize_type=CropToFit" width="1100"/>
       </div>
       <div class="maxWidth">
        <div id="pageHeading">
         <nav aria-label="Breadcrumb" class="msl-breadcrumb" id="breadcrumb">
          <ul class="breadcrumb">
-          <li>
-           <a href="/your-union/">
-            Your Union
-           </a>
-           <span aria-hidden="true" class="msl-breadcrumb-separator">
-            &gt;
-           </span>
-          </li>
-          <li>
-           <a href="/your-union/how-the-su-works/">
-            How The SU Works
-           </a>
-           <span aria-hidden="true" class="msl-breadcrumb-separator">
-            &gt;
-           </span>
-          </li>
-          <li>
-           <a href="/your-union/how-the-su-works/trustees/">
-            Trustees
-           </a>
-           <span aria-hidden="true" class="msl-breadcrumb-separator">
-            &gt;
-           </span>
-          </li>
           <li aria-current="page" class="current-page">
            <span>
-            Student Trustee
+            Login
            </span>
           </li>
          </ul>
         </nav>
         <h1 class="mslwidget pageTitle">
-         Student Trustee
+         Login
         </h1>
        </div>
       </div>
      </div>
      <div class="grid-row maxWidth">
-      <div class="grid-col grid-col-4-1 menuSideNav">
-       <p class="subnavTitle navClick">
-        More pages
-       </p>
-       <div class="mslwidget col-submenu">
-        <ul class="level_1">
-         <li>
-          <a href="/your-union/how-the-su-works/publications-reports/annualreport/">
-           Annual Reports
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/publications-reports/strategicplan/">
-           Strategic Plan
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/finances/">
-           Financial Statements
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/governingdocuments/">
-           Governance &amp; Governing Documents
-          </a>
-         </li>
-         <li>
-          <a href="https://www.gov.uk/government/organisations/charity-commission">
-           Charity Commission
-          </a>
-         </li>
-        </ul>
-       </div>
-       <p class="subnavTitle navClick">
-        Go to
-       </p>
-       <div class="mslwidget col-submenu">
-        <ul class="level_1">
-         <li>
-          <a href="/your-union/how-the-su-works/trustees/#the-board">
-           Trustee Board
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/trustees/#committees-meetings">
-           Meeting Dates
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/trustees/#role-details">
-           Role Details
-          </a>
-         </li>
-         <li>
-          <a href="/your-union/how-the-su-works/trustees/#policies">
-           Policies
-          </a>
-         </li>
-        </ul>
-       </div>
-      </div>
-      <div class="grid-col grid-col-4-3" id="page-content-body">
+      <div class="grid-col grid-col-4-4" id="page-content-body">
        <div class="pageContent">
-        <h3>
-         Student Trustee Recruitment
-        </h3>
-        <p>
-         We are looking for enthusiastic, committed, and reliable individuals to fill the role of Student Trustee and join our Board for a 2-year period from 1st August 2026. This is an exciting voluntary role which can be undertaken alongside your studies, help you to develop valuable skills and increase your employability, all whilst representing the views of Warwick students.
-        </p>
-        <p>
-         <strong>
-          Want to find out more?
-         </strong>
-         <br/>
-         We have put together a
-         <strong>
-          <a href="/pageassets/your-union/how-the-su-works/trustees/student-trustee/WSU-Student-Trustee-Recruitment-Pack-2026-v2.pdf">
-           Student Trustee Pack
-          </a>
-         </strong>
-         that contains information about Warwick SU, our strategic direction and, most importantly, more information about the role of a Student Trustee.
-        </p>
-        <p>
-         <a href="/pageassets/your-union/how-the-su-works/trustees/student-trustee/Student-Trustee-Application-Pack-2026v2.docx">
-          A Word version of the pack is available here.
-         </a>
-        </p>
-        <p>
-         If there is any information we can provide to help you make a decision to apply, please do get in touch by contacting Louise Marjoram, Director of Membership,
-         <a href="mailto:louise.marjoram@warwicksu.com">
-          louise.marjoram@warwicksu.com
-         </a>
-         for an informal conversation.
-        </p>
-        <p>
-         <strong>
-          The Process
-         </strong>
-         <br/>
-         The appointment of new Student Trustees is via application, assessment centre and interview. The application process is open until midday on Monday 16th March, the Assessment Centre will be during week commencing 5th May, and interviews will be w/c 11th May.
-        </p>
-        <p>
-         <strong>
-          About the role
-         </strong>
-         <br/>
-         We are currently looking for new Student Trustees who will be appointed for a period of two years starting in August 2026. If you are only here for one year, you can still apply, as we will re-advertise your role when it becomes vacant.
-        </p>
-        <p>
-         Our Trustee Board is made up of a mixture of our elected Student Officers, Lay Trustees and Student Trustees with a variety of skills, backgrounds and experience that help us to create a diverse Board, capable of making sound decisions for the benefit of our student members.
-        </p>
-        <p>
-         Student Trustees who sit on the Trustee Board for WSU have the same rights and responsibilities as the other members of the Trustee Board. However, they will not be involved in the day-to-day running of the Students' Union, rather taking an overview of how the Union is performing both financially and strategically, and in delivering services to students.
-        </p>
-        <p>
-         <strong>
-          Eligibility
-         </strong>
-         <br/>
-         Becoming a Student Trustee is a fantastic way to get involved in the strategic direction of the SU and a great opportunity to build skills and employability. This role is open to all students but you must be registered at the University of Warwick during the 2026/27 academic year whilst undertaking the role.
-        </p>
-        <p>
-         We are happy to receive applications from all students; undergraduate, postgraduate, home, international, full-time or part-time. We aim to have diverse representation on our Board, and welcome applications from students who have experience of or identify with under-represented and liberation groups.
-        </p>
-        <h3>
-         Application Form
-        </h3>
-        <p>
-         Please complete and submit the form below to apply for the role of Student Trustee.
-         <strong>
-          You will also need to submit the Equality Form
-         </strong>
-         , which you will find below the application form.
-        </p>
-        <div id="student-trustee-form">
-         <fieldset class="info-box form-box" id="personal-details">
-          <h3>
-           Personal Details
-          </h3>
-          <div class="form-box-input">
-           <label for="Surname">
-            Full Name (required)
-           </label>
-           <input id="Surname" name="Surname" required="required" type="text"/>
-          </div>
-          <div class="form-box-input">
-           <label for="address">
-            Address
-           </label>
-           <input id="address" name="address" type="text"/>
-          </div>
-          <div class="form-box-input">
-           <label for="mobile">
-            Mobile (required)
-           </label>
-           <input id="mobile" name="mobile" required="required" type="text"/>
-          </div>
-          <div class="form-box-input">
-           <label for="email">
-            E-mail (required)
-           </label>
-           <input id="email" name="email" required="required" type="text"/>
-          </div>
-          <div class="form-box-input">
-           <label for="course-of-study">
-            Course of study (required)
-           </label>
-           <input id="course-of-study" name="course-of-study" required="required" type="text"/>
-          </div>
-          <div class="form-box-input">
-           <label for="PreviousExperience">
-            Do you have any previous Trustee experience?
-           </label>
-           <select id="PreviousExperience" name="PreviousExperience">
-            <option value="Empty">
-            </option>
-            <option value="Yes">
-             Yes
-            </option>
-            <option value="No">
-             No
-            </option>
-           </select>
-          </div>
-          <div class="form-box-input" id="ExperienceYesDiv" style="display: none">
-           <label for="ExperienceYes">
-            If yes, please give details
-           </label>
-           <textarea id="ExperienceYes" name="OtherText"></textarea>
-          </div>
-         </fieldset>
-         <h3>
-          Please tell us how you fulfill the criteria
-         </h3>
+        <h2>
+         Log In to WarwickSU.com
+        </h2>
+        <section class="box pink">
+         Warwick Students
+        </section>
+        <section class="draw" style="display: block;">
          <p>
-          In each section below, please give a brief outline of how your skills, knowledge and experience fit the criteria. Please give demonstrable examples wherever possible to support your application.
+          If you're a student at the University of Warwick, you should log in to the Warwick SU website using your IT Services username and password.
          </p>
-         <fieldset class="info-box form-box">
-          <h3>
-           Experience &amp; Background
-          </h3>
-          <p>
-           Please describe how your work experience or volunteering to date is relevant to the role of Trustee.
-          </p>
-          <p>
-           Key criteria:
-          </p>
-          <div class="form-box-checkbox">
-           <input id="over-18-checkbox" name="over-18-checkbox" type="checkbox" value="Over 18"/>
-           <label for="over-18-checkbox">
-            Over 18
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="experience-of-voluntary-or-community-activity" name="experience-of-voluntary-or-community-activity" type="checkbox" value="Experience volunteering"/>
-           <label for="experience-of-voluntary-or-community-activity">
-            Experience of voluntary or community activity
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="involvement-in-the-wider-warwick-university-community" name="involvement-in-the-wider-warwick-university-community" type="checkbox" value="Involvement in community"/>
-           <label for="involvement-in-the-wider-warwick-university-community">
-            Involvement in the wider Warwick University community
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="an-awareness-of-the-areas-of-work-that-influence-and-inform-the-activities-of Warwick-Students-Union" name="an-awareness-of-the-areas-of-work-that-influence-and-inform-the-activities-of Warwick-Students-Union" type="checkbox" value="Awareness influence"/>
-           <label for="an-awareness-of-the-areas-of-work-that-influence-and-inform-the-activities-of Warwick-Students-Union">
-            An awareness of the areas of work that influence and inform the activities of Warwick Students’ Union
-           </label>
-          </div>
-          <div class="form-box-input">
-           <label for="experince-yes-give-details">
-            Please limit your response to 2,000 characters including spaces (required):
-           </label>
-           <textarea id="experince-yes-give-details" maxlength="2000" name="experince-yes-give-details" required="required"></textarea>
-          </div>
-         </fieldset>
-         <fieldset class="info-box form-box">
-          <h3>
-           Knowledge, Skills &amp; Abilities
-          </h3>
-          <p>
-           Key criteria:
-          </p>
-          <div class="form-box-checkbox">
-           <input id="an-understanding-of-the-legal-duties-responsibilities-and-liabilities-of trusteeship" name="an-understanding-of-the-legal-duties-responsibilities-and-liabilities-of trusteeship" type="checkbox" value="Undertsands legal duties"/>
-           <label for="an-understanding-of-the-legal-duties-responsibilities-and-liabilities-of trusteeship">
-            An understanding of the legal duties, responsibilities and liabilities of trusteeship
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="awareness-of-the-systems-and-structures-in-and-issues-affecting-higher education" name="awareness-of-the-systems-and-structures-in-and-issues-affecting-higher education" type="checkbox" value="Awareness systems"/>
-           <label for="awareness-of-the-systems-and-structures-in-and-issues-affecting-higher education">
-            Awareness of the systems and structures in, and issues affecting Higher Education
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="strategic-visio" name="strategic-vision" type="checkbox" value="Strategic vision"/>
-           <label for="strategic-vision">
-            Strategic vision and the ability to develop strategic thinking in others
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="a-commitment-to-devote-the-necessary-time-preparation-and-effort-to-the-proper discharge-of-the-responsibilities-of-a-trustee" name="a-commitment-to-devote-the-necessary-time-preparation-and-effort-to-the-proper discharge-of-the-responsibilities-of-a-trustee" type="checkbox" value="Commitment to devote"/>
-           <label for="commitment-to-devote">
-            A commitment to devote the necessary time (approximately 4-8 hours per month), preparation and effort to the proper discharge of the responsibilities of a Trustee
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="objective-judgement" name="objective-judgement" type="checkbox" value="Objective judgement"/>
-           <label for="objective-judgement">
-            Good, independent, objective judgement
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="ability-to-think-creatively" name="ability-to-think-creatively" type="checkbox" value="Think creatively"/>
-           <label for="ability-to-think-creatively">
-            Ability to think creatively and articulate ideas
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="ability-to-work-effectively-as-a-member-of-a-team" name="ability-to-work-effectively-as-a-member-of-a-team" type="checkbox" value="Member of team"/>
-           <label for="ability-to-work-effectively-as-a-member-of-a-team">
-            Ability to work effectively as a member of a team
-           </label>
-          </div>
-          <div class="form-box-input">
-           <label for="experience-yes-details">
-            Please limit your response to
-            <span style="font-size: 16px;">
-             2,000 characters including spaces
-            </span>
-            <span style="font-size: 16px;">
-             (required).
-            </span>
-           </label>
-           <textarea id="experince-yes-details" maxlength="2000" name="experience-yes-details" required="required"></textarea>
-          </div>
-         </fieldset>
-         <fieldset class="info-box form-box">
-          <h3>
-           Values, Attitudes &amp; Personal Qualities
-          </h3>
-          <p>
-           Please explain how your personal qualities would support your role as Trustee.
-          </p>
-          <p>
-           Key criteria:
-          </p>
-          <div class="form-box-checkbox">
-           <input id="commitment-to-the-organisation-and-its-core-values" name="commitment-to-the-organisation-and-its-core-values" type="checkbox" value="Commitment to organisation"/>
-           <label for="commitment-to-organisation">
-            Commitment to the organisation and its core values
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="willingness-to-exercise-leadership" name="willingness-to-exercise-leadership" type="checkbox" value="Willingness leadership"/>
-           <label for="willingness-to-exercise-leadership">
-            Willingness to exercise leadership when required to do so
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="enthusiastic-commitment-to-voluntary" name="enthusiastic-commitment-to-voluntary" type="checkbox" value="Enthusiastic commitment voluntary"/>
-           <label for="enthusiastic-commitment-to-voluntary">
-            Enthusiastic commitment to voluntary and community activity
-           </label>
-          </div>
-          <div class="form-box-checkbox">
-           <input id="acceptance-of" name="acceptance-of-nolan-principles" type="checkbox" value="Acceptance of nolan principles"/>
-           <label for="acceptance-of-nolan-principles">
-            Acceptance of the seven Nolan principles of public life
-           </label>
-          </div>
-          <div class="form-box-input">
-           <label for="personal-qualities-would-support-your-role-as-Trustee-detail">
-            Please limit your response to
-            <span style="font-size: 16px;">
-             2,000 characters including spaces
-            </span>
-            <span style="font-size: 16px;">
-             (required).
-            </span>
-           </label>
-           <textarea id="personal-qualities-would-support-your-role-as-Trustee-detail" maxlength="2000" name="personal-qualities-would-support-your-role-as-Trustee-detail" required="required"></textarea>
-          </div>
-         </fieldset>
-         <fieldset class="info-box form-box">
-          <h3>
-           Why do you want to be a Trustee?
-          </h3>
-          <p>
-           Summarise why you want to be a Trustee and how you feel you could contribute to the Trustees’ work for the Students’ Union.
-          </p>
-          <div class="form-box-input">
-           <label for="why-become-a-trustee">
-            Please limit your response to
-            <span style="font-size: 16px;">
-             2,000 characters including spaces
-            </span>
-            <span style="font-size: 16px;">
-             (required).
-            </span>
-           </label>
-           <textarea id="why-become-a-trustee" maxlength="2000" name="why-become-a-trustee" required="required"></textarea>
-          </div>
-         </fieldset>
-         <fieldset class="info-box form-box">
-          <h3>
-           Suitability
-          </h3>
-          <p>
-           Are there any other facts, activities or connections which you feel might be raised in future about your suitability to hold the position of Trustee and Director at Warwick Students’ Union, for example because they present or may present a conflict of interest?
-          </p>
-          <div class="form-box-input">
-           <label for="suitability">
-            These may include issues such as personal relationships or membership of organisations or other circumstances.
-           </label>
-          </div>
-          <div class="form-box-input">
-           <label for="suitability">
-            Please limit your response to
-            <span style="font-size: 16px;">
-             2,000 characters including spaces
-            </span>
-            <span style="font-size: 16px;">
-             .
-            </span>
-           </label>
-           <textarea id="suitability" maxlength="2000" name="suitability"></textarea>
-          </div>
-         </fieldset>
-         <fieldset class="info-box form-box">
-          <h3>
-           Charity Trustee Declaration
-          </h3>
-          <p>
-           Below is a list of circumstances which may prevent you from becoming a Trustee.
-          </p>
-          <p>
-           If you are in any doubt about your eligibility to act as a Trustee you should either seek your own legal advice or contact the Charity Commissioners.
-          </p>
-          <p>
-           You are not allowed to be a Trustee if you:
-          </p>
-          <ul>
-           <li>
-            Are under 18 years of age
-           </li>
-           <li>
-            Have been convicted at any time of any offence involving deception or dishonesty, unless the conviction is legally regarded as spent
-           </li>
-           <li>
-            <label for="undischared-bankrupt">
-             Are an undischarged bankrupt
-            </label>
-           </li>
-           <li>
-            <label for="undischared-bankrupt">
-             H
-            </label>
-            <label for="compositions-creditors-discharged">
-             ave made compositions with your creditors and have not been discharged
-            </label>
-           </li>
-           <li>
-            <label for="dismissed-su">
-             Have previously been dismissed from employment at the SU
-            </label>
-           </li>
-           <li>
-            <label for="will-devote">
-             Are not willing to devote the necessary time and effort (usually 4-8 hours per month in early evenings)
-            </label>
-           </li>
-           <li>
-            <label for="failed-payments">
-             Have failed to make payments under the County Court Administrators’ orders
-            </label>
-           </li>
-           <li>
-            <label for="charity-commission">
-             Have at any time been removed by the Charity Commissioners or by the Court in England, Wales or Scotland from being a trustee because of misconduct
-            </label>
-           </li>
-           <li>
-            <label for="charity-commission">
-             A
-            </label>
-            <label for="disqualified">
-             re disqualified from being a company director
-            </label>
-           </li>
-          </ul>
-          <p>
-           I have read and understood the criteria (above) for being a Trustee and confirm that I am eligible to become a Trustee in the event that I am appointed to the Board of Warwick SU.
-          </p>
-          <div class="form-box-checkbox">
-           <label for="name-printed">
-            Printed Name (required)
-           </label>
-           <input id="name-printed" name="name-printed" required="required" type="text" value=""/>
-          </div>
-          <div class="form-box-checkbox">
-           <label for="submit-date">
-            Date (required)
-           </label>
-           <input id="submit-date" name="submit-date" required="required" type="text" value=""/>
-          </div>
-          <div class="form-box-input" style="display:none">
-           <label for="hidden">
-            Preferred Name
-           </label>
-           <input name="hidden" type="text"/>
-          </div>
-          <p>
-           This
-           <a href="/pageassets/your-union/how-the-su-works/trustees/student-trustee/Student-Trustee-Equality-Form-February-2024-v2.docx">
-            Equality Form
-           </a>
-           should be completed and submitted separately from your application to
-           <a href="mailto:peopleteam@warwicksu.com">
-            peopleteam@warwicksu.com
-           </a>
-           or by post to Warwick Students’ Union, Gibbet Hill Road, Coventry, CV4 7AL.
-          </p>
-         </fieldset>
-        </div>
-        <input id="ctl00_Main_hdnSubmitFormPage" name="ctl00$Main$hdnSubmitFormPage" type="hidden" value="true"/>
-        <script type="text/javascript">
-         // look for input type submit control with id 'formpagesubmitbutton' and set onclick if found
-        try {
-            var btn = document.getElementById('formpagesubmitbutton');
-            btn.setAttribute('onclick', 'setSubmit();');
-            document.getElementById('ctl00_Main_hdnSubmitFormPage').value = 'false';
-        }
-        catch (e) {
-            // no submit button found, leave as default
-        }
-
-        function setSubmit() {
-            document.getElementById('ctl00_Main_hdnSubmitFormPage').value = 'true';
-        }
-        </script>
-        <div class="form-box-controls">
-         <div class="my-3" id="ctl00_Main_rc1_fp">
-          <div class="validationwrapper">
-          </div>
-          <div class="vp_content">
-           <span id="ctl00_Main_rc1_rc1">
-            <script async="" defer="" src="https://www.google.com/recaptcha/api.js">
-            </script>
-            <div class="g-recaptcha" data-sitekey="6LcLniUhAAAAAFwbBNnWx0vBUlGdfwB7y0m1kkoa" data-size="normal" data-theme="light" data-type="image">
+         <div class="mslwidget" id="studentlogin">
+          <a class="msl-sso-login-link" href="/sso/login.ashx?idp=uow&amp;ReturnUrl=%2fyour-union%2fhow-the-su-works%2ftrustees%2fstudent-trustee%2f" id="ctl00_ssologincontrol_hlExtLogin" rel="nofollow">
+           Log in using your University ITS account
+          </a>
+         </div>
+        </section>
+        <section class="box blue">
+         Alumni/Guests
+        </section>
+        <section class="draw">
+         <p>
+          Not a student at the University of Warwick? If you're a member of the public, Warwick alumni, student at another university or University staff, you can
+          <a href="/account/register/guest/">
+           create a Warwick SU account
+          </a>
+          and use it to purchase tickets for events, associate memberships and products in our online shop.
+         </p>
+         <p>
+          If your account was created after the 05/09/2023, your Username will be your email address, so please use this when logging in.
+         </p>
+         <div class="info-box info-box-force" id="login">
+          <div class="mslwidget">
+           <div class="sidepanel">
+            <h3>
+             Freshers, Alumni and Guests Login
+            </h3>
+            <div class="login" id="ctl00_stdlogin_pnlStandardLogin" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_stdlogin_btnLogin')">
+             <label for="ctl00_stdlogin_UserName" id="ctl00_stdlogin_lblUserName">
+              Username (Student ID for Freshers) or email address
+             </label>
+             <input class="textbox" id="ctl00_stdlogin_UserName" name="ctl00$stdlogin$UserName" type="text">
+              <label for="ctl00_stdlogin_Password" id="ctl00_stdlogin_lblPassword">
+               Password
+              </label>
+              <input class="textbox" id="ctl00_stdlogin_Password" name="ctl00$stdlogin$Password" type="password">
+               <input class="button" id="ctl00_stdlogin_btnLogin" name="ctl00$stdlogin$btnLogin" type="submit" value="Log In"/>
+              </input>
+             </input>
             </div>
-           </span>
+            <div class="login">
+             <a href="/account/resetpassword/" id="ctl00_stdlogin_lnkForgottenPassword" rel="nofollow">
+              Forgotten Password
+             </a>
+            </div>
+           </div>
+          </div>
+          <a class="button" href="/account/register/guest/">
+           Create a Guest Account
+          </a>
+          <div class="killfloat">
           </div>
          </div>
-         <div class="d-flex">
-          <input class="btn btn-primary me-1" id="ctl00_Main_fs1_btnSubmit" name="ctl00$Main$fs1$btnSubmit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$Main$fs1$btnSubmit", "", true, "vg1", "", false, false))' type="submit" value="Submit"/>
+        </section>
+        <section class="box blue">
+         Warwick SU Staff
+        </section>
+        <section class="draw">
+         <p>
+          If you're a Warwick SU staff member, please log in using your @warwicksu.com Microsoft email address and password.
+         </p>
+         <div class="mslwidget" id="stafflogin">
+          <a class="msl-sso-login-link" href="/sso/login.ashx?idp=aad&amp;ReturnUrl=%2fyour-union%2fhow-the-su-works%2ftrustees%2fstudent-trustee%2f" id="ctl00_ssostafflogin_hlExtLogin" rel="nofollow">
+           Log in using your staff IT account
+          </a>
          </div>
-        </div>
+        </section>
        </div>
       </div>
       <!-- start of adverts snippet -->
@@ -2582,21 +2045,6 @@ $("#basket dd.qty").each(function() {
 });
     </script>
     <!-- end of core2019-footer snippet -->
-    <script>
-     $( document ).ready(function() {
-  $("#page-content-body p img").wrap("<div class='imageParent'></div>");
-  
-
-    //Default image
-    var imgSrc = $('#ctl00_ctl24_imgBanner').attr('src') == '';
-
-    if(imgSrc) { 
-       $('#ctl00_ctl24_imgBanner').attr("src","https://www.warwicksu.com/stylesheet/WarwickSU2019/defaultbanner.jpg");
-    }      
-      
-  
-});
-    </script>
    </div>
   </form>
  </body>
